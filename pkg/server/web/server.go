@@ -41,6 +41,7 @@ var (
 )
 
 func init() {
+	Router.Use(basicAuthMiddleware)
 	m := expvar.NewMap("http")
 	m.Set("WebSocketConnectsCurrent", ExpWebSocketConnectsCurrent)
 }

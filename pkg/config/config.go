@@ -99,6 +99,7 @@ type Web struct {
 	BasePath       string `default:"" desc:"Base path prefix for UI and API URLs"`
 	UIDir          string `required:"true" default:"ui/dist" desc:"User interface dir"`
 	GreetingFile   string `required:"true" default:"ui/greeting.html" desc:"Home page greeting HTML"`
+	AuthHeader     string `default:"" desc:"Authorization header for BasicAuth"`
 	MonitorVisible bool   `required:"true" default:"true" desc:"Show monitor tab in UI?"`
 	MonitorHistory int    `required:"true" default:"30" desc:"Monitor remembered messages"`
 	PProf          bool   `required:"true" default:"false" desc:"Expose profiling tools on /debug/pprof"`
