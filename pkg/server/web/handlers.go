@@ -102,3 +102,17 @@ func spaTemplateHandler(tmpl *template.Template, basePath string,
 		}
 	})
 }
+
+// basicAuthMiddleware
+func basicAuthMiddleware(h http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
+		if len(rootConfig.Web.AuthHeader) > 0 {
+			if rootConfig.Web.AuthHeader != req.Header.Get("Authorization") {
+				w.Header().Set("WWW-Authenticate", `Basic realm="Restricted by INBUCKET_WEB_AUTHHEADER variable"`)
+				w.WriteHeader(http.StatusUnauthorized)
+				return
+			}
+		}
+		h.ServeHTTP(w, req)
+	})
+}
